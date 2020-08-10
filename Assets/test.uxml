@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Button text="Larger" name="larger" />
+    <ui:Button text="Toggle" name="toggle" />
+    <ui:Button text="Smaller" name="smaller" />
+</ui:UXML>
