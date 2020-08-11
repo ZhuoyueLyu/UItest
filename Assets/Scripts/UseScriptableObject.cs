@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class UseMyScriptableObject : MonoBehaviour
 {
-    public MyScriptableObjectClass myScriptableObject;
+    public ScriptableObjectClass myScriptableObject;
     private List<Light> myLights;
 
     // Use this for initialization

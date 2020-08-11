@@ -2,4 +2,5 @@
     <ui:Button text="Larger" name="larger" />
     <ui:Button text="Toggle" name="toggle" />
     <ui:Button text="Smaller" name="smaller" />
+    <ui:Label text=" " name="_position" style="height: 39px; font-size: 40px; -unity-text-align: upper-center;" />
 </ui:UXML>

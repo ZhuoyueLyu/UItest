@@ -13,7 +13,12 @@ public class Control : MonoBehaviour
     
     public PanelRenderer m_GameScreen;      // the UI screen
     public Transform Cube;
-    private Boolean toggleValue = false;
+    //private Boolean toggleValue = false;
+
+    // We need to update the values of some UI elements so here are
+    // their remembered references after being queried from the cloned
+    // UXML.
+    private Label m_PositionLabel;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // MonoBehaviour States
@@ -41,15 +46,33 @@ public class Control : MonoBehaviour
         GoToMainMenu();
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    // Bind UI to logic
 
-    // Try to find specific elements by name in the main menu screen and
-    // bind them to callbacks and data. Not finding an element is a valid
-    // state.
-    private IEnumerable<Object> BindGameScreen()
+    // Update
+    // Update UI Labels with data from the game. (also run some minimal game logic)
+    private void Update()
+    {
+        // If any of our UI Labels have not been bound, do nothing.
+        if (m_PositionLabel == null)
+            return;
+
+        // Update UI label text.
+        m_PositionLabel.text = "Position: " + Cube.position.ToString();
+
+    }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        // Bind UI to logic
+
+        // Try to find specific elements by name in the main menu screen and
+        // bind them to callbacks and data. Not finding an element is a valid
+        // state.
+        private IEnumerable<Object> BindGameScreen()
     {
         var root = m_GameScreen.visualTree;
+
+        // Stats
+        m_PositionLabel = root.Q<Label>("_position");
 
         // Buttons
         var largerButton = root.Q<Button>("larger");
@@ -65,14 +88,15 @@ public class Control : MonoBehaviour
         {
             toggleButton.clickable.clicked += () =>
             {
-                if (toggleValue)
-                {
-                    Cube.position += new Vector3(1f, 1f, 1f);
-                }
-                else {
-                    Cube.position -= new Vector3(1f, 1f, 1f);
-                }
-                toggleValue = !toggleValue;
+                //if (toggleValue)
+                //{
+                //    Cube.position += new Vector3(1f, 1f, 1f);
+                //}
+                //else {
+                //    Cube.position -= new Vector3(1f, 1f, 1f);
+                //}
+                //toggleValue = !toggleValue;
+                Cube.position = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
             };
         }
         var smallerButton = root.Q<Button>("smaller");
